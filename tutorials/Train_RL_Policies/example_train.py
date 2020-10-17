@@ -57,6 +57,7 @@ def sampler(pid, queue, evt, env, policy, batchsz):
         for t in range(traj_len):
 
             # [s_dim] => [a_dim]
+            print(s)
             s_vec = torch.Tensor(policy.vector.state_vectorize(s))
             a = policy.predict(s)
 
@@ -155,7 +156,7 @@ def update(env, policy, batchsz, epoch, process_num):
 
 if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument("--batchsz", type=int, default=1024, help="batch size of trajactory sampling")
+    parser.add_argument("--batchsz", type=int, default=32, help="batch size of trajactory sampling")
     parser.add_argument("--epoch", type=int, default=200, help="number of epochs to train")
     parser.add_argument("--process_num", type=int, default=8, help="number of processes of trajactory sampling")
     args = parser.parse_args()
